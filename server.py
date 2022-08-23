@@ -12,21 +12,13 @@ app = Flask(__name__)
 vs = VideoSource(VIDEO_URL)
 time.sleep(2)
 
-
-def get_stream():
-	while True:
-		if not vs.status:
-			continue
-		yield vs.encoded_frame
-		time.sleep(1 / 30)
-
 @app.route("/")
 def index():
 	return render_template("index.html")
 
 @app.route("/video")
 def video():
-	return Response(get_stream(), mimetype="multipart/x-mixed-replace; boundary=frame")
+	return Response(vs.get_stream(), mimetype="multipart/x-mixed-replace; boundary=frame")
 
 
 if __name__ == '__main__':
