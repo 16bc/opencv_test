@@ -1,16 +1,16 @@
-# Первая самая простая и сырая версия. Рассинхрон потока и перегрузка, но работает.
-
 from flask import Response
 from flask import Flask
 from flask import render_template
 import time
 from videosource import VideoSource
 
-VIDEO_URL = "https://cams.is74.ru/live/main/cam19385.m3u8"
 
-app = Flask(__name__)
-vs = VideoSource(VIDEO_URL)
+VIDEO_URL = "https://cams.is74.ru/live/main/cam19385.m3u8"
+TRAFICK_LIGHT_COORDS = [521, 531, 634, 644]
+
+vs = VideoSource(video_url=VIDEO_URL, tl=TRAFICK_LIGHT_COORDS)
 time.sleep(2)
+app = Flask(__name__)
 
 @app.route("/")
 def index():
@@ -22,4 +22,4 @@ def video():
 
 
 if __name__ == '__main__':
-	app.run(debug=True, threaded=True, use_reloader=False)
+	app.run(debug=True)
