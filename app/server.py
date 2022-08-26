@@ -6,7 +6,7 @@ from videosource import VideoSource
 
 
 VIDEO_URL = "https://cams.is74.ru/live/main/cam19385.m3u8"
-TRAFICK_LIGHT_COORDS = [521, 531, 634, 644]
+TRAFICK_LIGHT_COORDS = [520, 529, 634, 641]
 
 vs = VideoSource(video_url=VIDEO_URL, tl=TRAFICK_LIGHT_COORDS)
 time.sleep(2)
